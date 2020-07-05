@@ -72,13 +72,19 @@
 #define MODULE_RD2						0
 #endif
 
+#ifndef MODULE_DIY
+#define MODULE_DIY						0
+#endif
+
 #define APP_BLE_CONN_CFG_TAG            1                                           /**< A tag identifying the SoftDevice BLE configuration. */
 
 #ifdef NRF52840_XXAA
 #if MODULE_BUILTIN
 #define DEVICE_NAME                     "VESC 52840 BUILTIN"
-#elif defined(MODULE_RD2)
+#elif MODULE_RD2
 #define DEVICE_NAME                     "VESC RAD2"
+#elif MODULE_DIY
+#define DEVICE_NAME                     "VESC 52840 DIY"
 #else
 #define DEVICE_NAME                     "VESC 52840 UART"
 #endif
@@ -125,11 +131,16 @@
 #define UART_TX							25
 #define UART_TX_DISABLED				28
 #define LED_PIN							27
-#elif defined(MODULE_RD2)
+#elif MODULE_RD2
 #define UART_RX							11
 #define UART_TX							12
 #define UART_TX_DISABLED				18
 #define LED_PIN							15
+#elif MODULE_DIY
+#define UART_RX							6
+#define UART_TX							2
+#define UART_TX_DISABLED				19
+#define LED_PIN							8
 #else
 #define UART_RX							11
 #define UART_TX							8
